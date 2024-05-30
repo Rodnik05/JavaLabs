@@ -1,4 +1,6 @@
-
+import Rodnik.Controllers.CatController;
+import Rodnik.DTOs.CatDTO;
+import Rodnik.DTOs.ColorsDTO;
 import Rodnik.Services.CatService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,17 +8,17 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDate;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ControllerTests {
     @Mock
-    private static CatOwnerDAO catOwnerDAO;
-    @Mock
-    private static CatDAO catDAO;
+    private static CatService catService;
 
     @InjectMocks
-    private CatService catService;
+    private CatController catController;
 
     @BeforeEach
     public void init() {
@@ -24,31 +26,27 @@ public class ControllerTests {
     }
 
     @Test
-    public void addFriendTest() {
-        Cat cat1 = new Cat();
-        Cat cat2 = new Cat();
-        when(catDAO.getCatById(1L)).thenReturn(cat1);
-        when(catDAO.getCatById(2L)).thenReturn(cat2);
+    public void GetFriendTest() {
+        CatDTO catDTO1 = new CatDTO(
+                "Me",
+                ColorsDTO.Black,
+                "cat",
+                LocalDate.of(2004,05,05),
+                0);
+        CatDTO catDTO2 = new CatDTO(
+                "You",
+                ColorsDTO.Black,
+                "dog",
+                LocalDate.of(1800,05,05),
+                0);
+        when(catService.getCatById(1L)).thenReturn(catDTO1);
+        when(catService.getCatById(2L)).thenReturn(catDTO2);
 
-        catService.addFriend(1L, 2L);
+        catController.getCatById(1L);
+        catController.getCatById(2L);
 
-        verify(catDAO).getCatById(1L);
-        verify(catDAO).getCatById(2L);
-        verify(catDAO).addFriend(cat1, cat2);
-    }
-
-    @Test
-    public void removeFriendTest() {
-        Cat cat1 = new Cat();
-        Cat cat2 = new Cat();
-        when(catDAO.getCatById(1L)).thenReturn(cat1);
-        when(catDAO.getCatById(2L)).thenReturn(cat2);
-
-        catService.removeFriend(1L, 2L);
-
-        verify(catDAO).getCatById(1L);
-        verify(catDAO).getCatById(2L);
-        verify(catDAO).removeFriend(cat1, cat2);
+        verify(catService).getCatById(1L);
+        verify(catService).getCatById(2L);
     }
 }
 

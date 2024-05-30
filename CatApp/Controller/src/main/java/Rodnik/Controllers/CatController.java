@@ -11,25 +11,25 @@ import java.util.List;
 @AllArgsConstructor
 public class CatController {
     private CatService catService;
-    void addCat(String name, long ownerId, String breed, String color, LocalDate birth) {
+    public void addCat(String name, long ownerId, String breed, String color, LocalDate birth) {
          catService.addCat(new CatDTO(name, ColorsDTO.findByValue(color), breed, birth, ownerId));
     }
-    void removeCat(long id) {
+    public void removeCat(long id) {
         catService.removeCat(id);
     }
-    CatDTO getCatById(long id) {
-        return catService.getCat(id);
+    public CatDTO getCatById(long id) {
+        return catService.getCatById(id);
     }
-    List<CatDTO> getAllCats() {
+    public List<CatDTO> getAllCats() {
         return catService.getAllCats();
     }
-    List<CatDTO> getAllFriends(long id) {
+    public List<CatDTO> getAllFriends(long id) {
         return catService.getFriends(id);
     }
-    void addFriend(long catId, long friendCatId) {
+    public void addFriend(long catId, long friendCatId) {
         catService.addFriend(catId, friendCatId);
     }
-    void unfriend(long catId, long friendCatId) {
+    public void unfriend(long catId, long friendCatId) {
         catService.removeFriend(catId, friendCatId);
     }
 }

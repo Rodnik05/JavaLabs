@@ -28,7 +28,7 @@ public class CatService {
         return Colors.findByValue(colorDTO.name());
     }
 
-    public CatDTO getCat(long catId) {
+    public CatDTO getCatById(long catId) {
         Cat cat = catDAO.getCatById(catId);
         return new CatDTO(
                 cat.getName(),
