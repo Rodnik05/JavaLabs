@@ -1,18 +1,20 @@
-package Rodnik.DAO;
+package Rodnik.DAOs;
 
-import Rodnik.Entity.Cat;
+import Rodnik.Entities.Cat;
+import Rodnik.Entities.CatOwner;
 import Rodnik.hibernate.SessionFactorySingleton;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import java.util.List;
 
-public class CatDAO {
-
-    public void saveCat(Cat cat) {
+public class CatOwnerDAO implements ICatOwnerDAO{
+    @Override
+    public void saveCatOwner(CatOwner catOwner) {
         Transaction transaction = null;
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(cat);
+            session.save(catOwner);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -22,20 +24,22 @@ public class CatDAO {
         }
     }
 
-    public Cat getCatById(Long id) {
+    @Override
+    public CatOwner getCatOwnerById(Long id) {
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
-            return session.get(Cat.class, id);
+            return session.get(CatOwner.class, id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public void updateCat(Cat cat) {
+    @Override
+    public void updateCatOwner(CatOwner catOwner) {
         Transaction transaction = null;
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.merge(cat);
+            session.merge(catOwner);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -45,12 +49,12 @@ public class CatDAO {
         }
     }
 
-
-    public void deleteCat(Cat cat) {
+    @Override
+    public void deleteCatOwner(CatOwner catOwner) {
         Transaction transaction = null;
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(cat);
+            session.delete(catOwner);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -60,24 +64,25 @@ public class CatDAO {
         }
     }
 
-
-    public List<Cat> getAllFriends(Cat cat) {
+    @Override
+    public List<CatOwner> getAllCatOwners() {
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
-            return cat.getFriends();
+            return session.createQuery("from CatOwner", CatOwner.class).list();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public void addFriend(Cat cat, Cat friend) {
+    @Override
+    public void ownCat(CatOwner catOwner, Cat cat) {
         Transaction transaction = null;
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            cat.getFriends().add(friend);
-            friend.getFriends().add(cat);
+            cat.setOwner(catOwner);
+            catOwner.getCats().add(cat);
+            session.merge(catOwner);
             session.merge(cat);
-            session.merge(friend);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -87,14 +92,15 @@ public class CatDAO {
         }
     }
 
-    public void removeFriend(Cat cat, Cat friend) {
+    @Override
+    public void removeCat(CatOwner catOwner, Cat cat) {
         Transaction transaction = null;
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            cat.getFriends().remove(friend);
-            friend.getFriends().remove(cat);
+            catOwner.getCats().remove(cat);
+            cat.setOwner(null);
+            session.merge(catOwner);
             session.merge(cat);
-            session.merge(friend);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

@@ -16,7 +16,8 @@
         <property name="hbm2ddl.auto">update</property>
 
         <!-- Список классов, отображаемых на базу данных -->
-        <mapping class="Rodnik.Entity.Cat"/>
+        <mapping class="Rodnik.Entities.Cat"/>
+        <mapping class="Rodnik.Entities.CatOwner"/>
         <!--        <mapping class="org.example.entity.Owner"/>-->
     </session-factory>
 </hibernate-configuration>

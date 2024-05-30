@@ -1,7 +1,7 @@
 package Rodnik;
 
-import Rodnik.DAO.CatDAO;
-import Rodnik.Entity.Cat;
+import Rodnik.DAOs.CatDAO;
+import Rodnik.Entities.Cat;
 
 public class Main {
     public static void main(String[] args) {

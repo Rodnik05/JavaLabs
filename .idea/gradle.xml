@@ -10,7 +10,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/CatApp" />
+            <option value="$PROJECT_DIR$/CatApp/Controller" />
             <option value="$PROJECT_DIR$/CatApp/DAO" />
+            <option value="$PROJECT_DIR$/CatApp/Service" />
           </set>
         </option>
       </GradleProjectSettings>

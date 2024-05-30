@@ -1,4 +1,4 @@
-package Rodnik.Entity;
+package Rodnik.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -28,14 +28,14 @@ public class Cat {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "color")
-    private Color color;
+    private Colors color;
 
-//    @ManyToOne
-//    @JoinColumn(name = "owner_id")
-//    private Owner owner;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private CatOwner owner;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "cat_friendship",
+    @JoinTable(name = "cat_friends",
             joinColumns = @JoinColumn(name = "cat_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id"))
     private List<Cat> friends;
@@ -44,7 +44,7 @@ public class Cat {
         this.friends = new ArrayList<>();
     }
 
-    public Cat(String name,Color color, String breed, LocalDate birthDate) {
+    public Cat(String name, Colors color, String breed, LocalDate birthDate) {
         this.name = name;
         this.color = color;
         this.breed = breed;

@@ -16,6 +16,8 @@ dependencies {
 
 dependencies {
     implementation(project(":CatApp:DAO"))
+    implementation(project(":CatApp:Service"))
+    implementation(project(":CatApp:Controller"))
 }
 
 tasks.test {
