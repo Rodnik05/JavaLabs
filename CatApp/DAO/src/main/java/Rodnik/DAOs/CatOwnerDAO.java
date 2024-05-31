@@ -10,17 +10,19 @@ import java.util.List;
 
 public class CatOwnerDAO implements ICatOwnerDAO{
     @Override
-    public void saveCatOwner(CatOwner catOwner) {
+    public long saveCatOwner(CatOwner catOwner) {
         Transaction transaction = null;
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(catOwner);
+            long catOwnerId = (long) session.save(catOwner);
             transaction.commit();
+            return catOwnerId;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw e;
         }
     }
 

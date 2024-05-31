@@ -5,7 +5,7 @@ import Rodnik.Entities.Cat;
 import java.util.List;
 
 public interface ICatDAO {
-    void saveCat(Cat cat);
+    long saveCat(Cat cat);
 
     Cat getCatById(Long id);
 

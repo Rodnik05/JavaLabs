@@ -11,8 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 public class CatController {
     private CatService catService;
-    public void addCat(String name, long ownerId, String breed, String color, LocalDate birth) {
-         catService.addCat(new CatDTO(name, ColorsDTO.findByValue(color), breed, birth, ownerId));
+    public long addCat(String name, long ownerId, String breed, String color, LocalDate birth) {
+         return catService.addCat(new CatDTO(name, ColorsDTO.findByValue(color), breed, birth, ownerId));
     }
     public void removeCat(long id) {
         catService.removeCat(id);

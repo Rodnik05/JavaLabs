@@ -8,17 +8,19 @@ import java.util.List;
 
 public class CatDAO implements ICatDAO{
     @Override
-    public void saveCat(Cat cat) {
+    public long saveCat(Cat cat) {
         Transaction transaction = null;
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(cat);
+            long catId = (long) session.save(cat);
             transaction.commit();
+            return catId;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw e;
         }
     }
     @Override

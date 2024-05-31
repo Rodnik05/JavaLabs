@@ -16,8 +16,8 @@ public class CatService {
     private CatDAO catDAO;
     private CatOwnerDAO catOwnerDAO;
 
-    public void addCat(CatDTO catDTO) {
-        catDAO.saveCat(new Cat(catDTO.getName(), transferDTOToColor(catDTO.getColor()), catDTO.getBreed(), catDTO.getBirthDate()));
+    public long addCat(CatDTO catDTO) {
+        return catDAO.saveCat(new Cat(catDTO.getName(), transferDTOToColor(catDTO.getColor()), catDTO.getBreed(), catDTO.getBirthDate()));
     }
 
     public ColorsDTO transferColorToDTO(Colors color) {

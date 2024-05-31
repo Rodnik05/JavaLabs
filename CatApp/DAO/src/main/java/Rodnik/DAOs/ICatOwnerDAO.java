@@ -6,7 +6,7 @@ import Rodnik.Entities.CatOwner;
 import java.util.List;
 
 public interface ICatOwnerDAO {
-    void saveCatOwner(CatOwner catOwner);
+    long saveCatOwner(CatOwner catOwner);
 
     CatOwner getCatOwnerById(Long id);
 

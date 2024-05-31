@@ -19,7 +19,7 @@ import Rodnik.Entities.CatOwner;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceDAOUnitTests {
+public class ServiceDAOIntegrationTests {
 
     @Mock
     private static CatOwnerDAO catOwnerDAO;

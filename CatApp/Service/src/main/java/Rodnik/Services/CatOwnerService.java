@@ -16,8 +16,8 @@ public class CatOwnerService {
     private CatOwnerDAO catOwnerDAO;
     private CatDAO catDAO;
 
-    public void addOwner(CatOwnerDTO catOwnerDTO) {
-        catOwnerDAO.saveCatOwner(new CatOwner(catOwnerDTO.getName(), catOwnerDTO.getBirthDate()));
+    public long addOwner(CatOwnerDTO catOwnerDTO) {
+        return catOwnerDAO.saveCatOwner(new CatOwner(catOwnerDTO.getName(), catOwnerDTO.getBirthDate()));
     }
 
     public void removeCat(long ownerId, long catId) {

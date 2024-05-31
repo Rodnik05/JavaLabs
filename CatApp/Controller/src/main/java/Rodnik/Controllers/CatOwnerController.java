@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class CatOwnerController {
     private CatOwnerService catOwnerService;
-    public void addOwner(String name, LocalDate birth) {
-        catOwnerService.addOwner(new CatOwnerDTO(name, birth));
+    public long addOwner(String name, LocalDate birth) {
+        return catOwnerService.addOwner(new CatOwnerDTO(name, birth));
     }
     public CatOwnerDTO getOwnerById(long id) {
         return catOwnerService.getOwnerById(id);
