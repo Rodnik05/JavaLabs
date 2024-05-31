@@ -23,7 +23,7 @@ public class CatController {
     public List<CatDTO> getAllCats() {
         return catService.getAllCats();
     }
-    public List<CatDTO> getAllFriends(long id) {
+    public List<CatDTO> getFriends(long id) {
         return catService.getFriends(id);
     }
     public void addFriend(long catId, long friendCatId) {

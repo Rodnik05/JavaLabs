@@ -12,16 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 public class CatOwnerController {
     private CatOwnerService catOwnerService;
-    void addOwner(String name, LocalDate birth) {
+    public void addOwner(String name, LocalDate birth) {
         catOwnerService.addOwner(new CatOwnerDTO(name, birth));
     }
-    CatOwnerDTO getOwnerById(int id) {
-        return catOwnerService.getOwner(id);
+    public CatOwnerDTO getOwnerById(long id) {
+        return catOwnerService.getOwnerById(id);
     }
-    List<CatOwnerDTO> getAllOwners() {
+    public List<CatOwnerDTO> getAllOwners() {
         return catOwnerService.getAllOwners();
     }
-    void removeOwner(int id) {
+    public void removeOwner(long id) {
         catOwnerService.removeOwner(id);
     }
 }

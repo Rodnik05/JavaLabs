@@ -54,7 +54,7 @@ public class CatOwnerService {
         catOwnerDAO.updateCatOwner(catOwner);
     }
 
-    public CatOwnerDTO getOwner(long ownerId) {
+    public CatOwnerDTO getOwnerById(long ownerId) {
         CatOwner catOwner = catOwnerDAO.getCatOwnerById(ownerId);
         List<CatDTO> catDTOs = catOwner.getCats().stream()
                 .map(cat -> new CatDTO(
