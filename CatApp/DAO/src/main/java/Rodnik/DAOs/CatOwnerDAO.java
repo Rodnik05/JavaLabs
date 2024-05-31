@@ -75,7 +75,7 @@ public class CatOwnerDAO implements ICatOwnerDAO{
     }
 
     @Override
-    public void ownCat(CatOwner catOwner, Cat cat) {
+    public void addCat(CatOwner catOwner, Cat cat) {
         Transaction transaction = null;
         try (Session session = SessionFactorySingleton.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();

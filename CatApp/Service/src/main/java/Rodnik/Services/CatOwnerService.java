@@ -32,7 +32,7 @@ public class CatOwnerService {
     public void addCat(long ownerId, long catId) {
         CatOwner catOwner = catOwnerDAO.getCatOwnerById(ownerId);
         Cat cat = catDAO.getCatById(catId);
-        catOwnerDAO.ownCat(catOwner, cat);
+        catOwnerDAO.addCat(catOwner, cat);
     }
 
     public void removeOwner(long ownerId) {

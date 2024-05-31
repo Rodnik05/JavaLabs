@@ -19,7 +19,7 @@ import java.util.List;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class ControllerTests {
+public class ControllerServiceUnitTests {
     @Mock
     private static CatService catService;
 

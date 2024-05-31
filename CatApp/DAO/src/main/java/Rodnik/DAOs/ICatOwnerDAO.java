@@ -16,7 +16,7 @@ public interface ICatOwnerDAO {
 
     List<CatOwner> getAllCatOwners();
 
-    void ownCat(CatOwner catOwner, Cat cat);
+    void addCat(CatOwner catOwner, Cat cat);
 
     void removeCat(CatOwner catOwner, Cat cat);
 }

@@ -53,7 +53,7 @@ public class CatService {
 
     public void addOwner(long catId, long ownerId) {
         Cat cat = catDAO.getCatById(catId);
-        catOwnerDAO.ownCat(catOwnerDAO.getCatOwnerById(ownerId), cat);
+        catOwnerDAO.addCat(catOwnerDAO.getCatOwnerById(ownerId), cat);
     }
 
     public List<CatDTO> getAllCats() {
